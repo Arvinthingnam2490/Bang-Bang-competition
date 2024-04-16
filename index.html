@@ -3,24 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Competition Form</title>
+    <title>Form Submission</title>
 </head>
 <body>
-    <h1>Online Competition Registration</h1>
-    <form action="submit.php" method="post">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
-        
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
-        
-        <label for="phone">Phone:</label>
-        <input type="tel" id="phone" name="phone" required><br><br>
-        
-        <label for="message">Message:</label><br>
-        <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
-        
-        <input type="submit" value="Submit">
+    <h1>Submit Form</h1>
+    <form id="submit-form">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br>
+        <button type="submit">Submit</button>
     </form>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.5/firebase-firestore.js"></script>
+    <script>
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyDBizhlldoQ2Qcic36adtP_uUy1vWjtFYE",
+            authDomain: "mlbng-5a4b2.firebaseapp.com",
+            projectId: "mlbng-5a4b2",
+            storageBucket: "mlbng-5a4b2.appspot.com",
+            messagingSenderId: "291082842235",
+            appId: "1:291082842235:web:076f7a05be2236897b32de"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        // Get a reference to the Firestore service
+        const db = firebase.firestore();
+
+        // Add form submission event listener
+        const form = document.getElementById('submit-form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent default form submission behavior
+
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            // Add form data to Firestore
+            db.collection('submissions').add({
+                name: name,
+                email: email
+            })
+            .then((docRef) => {
+                console.log("Document written with ID: ", docRef.id);
+                alert("Form submitted successfully!");
+                form.reset(); // Reset form after successful submission
+            })
+            .catch((error) => {
+                console.error("Error adding document: ", error);
+                alert("An error occurred. Please try again later.");
+            });
+        });
+    </script>
 </body>
 </html>

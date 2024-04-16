@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Submission</title>
+    <title>Submit Form</title>
 </head>
 <body>
     <h1>Submit Form</h1>
@@ -15,24 +15,23 @@
         <button type="submit">Submit</button>
     </form>
 
+    <!-- Firebase JavaScript SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.6.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.5/firebase-firestore.js"></script>
     <script>
         // Initialize Firebase
-       const firebaseConfig = {
-    apiKey: "AIzaSyBRMvndXJZ9TsJCCFtADTF8svjVrY8P2BI",
-    authDomain: "nownew-6988c.firebaseapp.com",
-    databaseURL: "https://nownew-6988c-default-rtdb.firebaseio.com",
-    projectId: "nownew-6988c",
-    storageBucket: "nownew-6988c.appspot.com",
-    messagingSenderId: "115359491293",
-    appId: "1:115359491293:web:aa61ac76b8a42ad2916734"
-  };
+        const firebaseConfig = {
+  apiKey: "AIzaSyBRMvndXJZ9TsJCCFtADTF8svjVrY8P2BI",
+  authDomain: "nownew-6988c.firebaseapp.com",
+  databaseURL: "https://nownew-6988c-default-rtdb.firebaseio.com",
+  projectId: "nownew-6988c",
+  storageBucket: "nownew-6988c.appspot.com",
+  messagingSenderId: "115359491293",
+  appId: "1:115359491293:web:aa61ac76b8a42ad2916734"
+};
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-</script>
-
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
         // Get a reference to the Firestore service
         const db = firebase.firestore();
 
